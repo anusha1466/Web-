@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pomodoro Timer</title>
+  <style>
+    body {
+      font-family: Arial;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #1e1e2f;
+      color: white;
+    }
+
+```
+.container {
+  text-align: center;
+  background: #2c2c3e;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+#timer {
+  font-size: 48px;
+  margin: 20px 0;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.start { background: #4CAF50; color: white; }
+.pause { background: #f39c12; color: white; }
+.reset { background: #e74c3c; color: white; }
+
+button:hover {
+  opacity: 0.8;
+}
+```
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Pomodoro Timer</h1>
+  <div id="timer">25:00</div>
+
+<button class="start" onclick="startTimer()">Start</button> <button class="pause" onclick="pauseTimer()">Pause</button> <button class="reset" onclick="resetTimer()">Reset</button>
+
+</div>
+
+<script>
+  let time = 25 * 60; // 25 minutes
+  let timerInterval;
+  let isRunning = false;
+
+  function updateDisplay() {
+    let minutes = Math.floor(time / 60);
+    let seconds = time % 60;
+
+    document.getElementById("timer").innerText =
+      (minutes < 10 ? "0" : "") + minutes + ":" +
+      (seconds < 10 ? "0" : "") + seconds;
+  }
+
+  function startTimer() {
+    if (isRunning) return;
+
+    isRunning = true;
+    timerInterval = setInterval(() => {
+      if (time > 0) {
+        time--;
+        updateDisplay();
+      } else {
+        clearInterval(timerInterval);
+        alert("Time's up! Take a break.");
+        isRunning = false;
+      }
+    }, 1000);
+  }
+
+  function pauseTimer() {
+    clearInterval(timerInterval);
+    isRunning = false;
+  }
+
+  function resetTimer() {
+    clearInterval(timerInterval);
+    time = 25 * 60;
+    isRunning = false;
+    updateDisplay();
+  }
+</script>
+
+</body>
+</html>
+
