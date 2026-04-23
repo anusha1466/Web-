@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Avatar Generator</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial;
+            background-color: #f0f0f0;
+        }
+        img {
+            margin-top: 20px;
+            border-radius: 50%;
+            border: 3px solid black;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Avatar Generator</h2>
+
+<img id="avatar" src="https://api.dicebear.com/7.x/adventurer/svg?seed=1" width="200">
+
+<br><br>
+
+<button onclick="generateAvatar()">Generate Avatar</button>
+
+<script>
+function generateAvatar() {
+    let random = Math.floor(Math.random() * 1000);
+    let url = "https://api.dicebear.com/7.x/adventurer/svg?seed=" + random;
+    document.getElementById("avatar").src = url;
+}
+</script>
+
+</body>
+</html>
