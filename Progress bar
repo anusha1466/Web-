@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Progress Bar</title>
+  <style>
+    body {
+      font-family: Arial;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: #f4f4f4;
+    }
+
+    .progress-container {
+      width: 300px;
+      height: 25px;
+      background: #ddd;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: #4caf50;
+      transition: width 0.4s ease;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      background: #333;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .btn:hover {
+      background: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="progress-container">
+    <div class="progress-bar" id="progress"></div>
+  </div>
+
+  <button class="btn" onclick="increase()">Increase</button>
+  <p id="text">0%</p>
+
+  <script>
+    let progress = 0;
+
+    function increase() {
+      if (progress < 100) {
+        progress += 10;
+        document.getElementById("progress").style.width = progress + "%";
+        document.getElementById("text").innerText = progress + "%";
+      }
+    }
+  </script>
+
+</body>
+</html>
