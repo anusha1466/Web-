@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dice Game</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background: #222;
+      color: white;
+    }
+
+```
+h1 {
+  margin-top: 20px;
+}
+
+.dice-container {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin: 30px;
+}
+
+.player {
+  background: #333;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.dice {
+  font-size: 80px;
+  margin: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #4CAF50;
+  color: white;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+#result {
+  font-size: 24px;
+  margin-top: 20px;
+}
+```
+
+  </style>
+</head>
+<body>
+
+<h1>🎲 Dice Game</h1>
+
+<div class="dice-container">
+  <div class="player">
+    <h2>Player 1</h2>
+    <div id="dice1" class="dice">🎲</div>
+  </div>
+
+  <div class="player">
+    <h2>Player 2</h2>
+    <div id="dice2" class="dice">🎲</div>
+  </div>
+</div>
+
+<button onclick="rollDice()">Roll Dice</button>
+
+<div id="result"></div>
+
+<script>
+  function rollDice() {
+    let random1 = Math.floor(Math.random() * 6) + 1;
+    let random2 = Math.floor(Math.random() * 6) + 1;
+
+    document.getElementById("dice1").innerText = getDiceEmoji(random1);
+    document.getElementById("dice2").innerText = getDiceEmoji(random2);
+
+    if (random1 > random2) {
+      document.getElementById("result").innerText = "Player 1 Wins!";
+    } else if (random2 > random1) {
+      document.getElementById("result").innerText = "Player 2 Wins!";
+    } else {
+      document.getElementById("result").innerText = "It's a Draw!";
+    }
+  }
+
+  function getDiceEmoji(num) {
+    const dice = ["⚀","⚁","⚂","⚃","⚄","⚅"];
+    return dice[num - 1];
+  }
+</script>
+
+</body>
+</html>
