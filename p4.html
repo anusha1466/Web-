@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Stacked Paragraphs</title>
+
+    <style>
+        .box {
+            position: absolute;
+            width: 300px;
+            padding: 10px;
+            border: 1px solid black;
+            background-color: lightyellow;
+        }
+
+        #p1 { top: 0px;  z-index: 1; }
+        #p2 { top: 30px; z-index: 2; }
+        #p3 { top: 60px; z-index: 3; }
+    </style>
+</head>
+
+<body>
+
+<p id="p1" class="box"
+   onmouseover="show(this,0,1)"
+   onmouseout="restore(this,0,1)">
+   Paragraph 1: Technology shapes life.
+</p>
+
+<p id="p2" class="box"
+   onmouseover="show(this,30,2)"
+   onmouseout="restore(this,30,2)">
+   Paragraph 2: Innovation drives growth.
+</p>
+
+<p id="p3" class="box"
+   onmouseover="show(this,60,3)"
+   onmouseout="restore(this,60,3)">
+   Paragraph 3: Knowledge is power.
+</p>
+
+<script>
+    function show(p, topPos, zPos) {
+        p.style.top = "0px";     // rise to top
+        p.style.zIndex = 10;     // become topmost
+    }
+
+    function restore(p, topPos, zPos) {
+        p.style.top = topPos + "px"; // return to original position
+        p.style.zIndex = zPos;       // restore original stack order
+    }
+</script>
+
+</body>
+</html>
