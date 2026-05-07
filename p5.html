@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Fruit Cost</title>
+</head>
+
+<body>
+
+<h3>Select Fruits</h3>
+
+<form onsubmit="return total();">
+
+<input type="checkbox" onclick="addApple()"> Apple (59¢)
+Qty: <input type="text" id="a" value="0"><br><br>
+
+<input type="checkbox" onclick="addOrange()"> Orange (49¢)
+Qty: <input type="text" id="o" value="0"><br><br>
+
+<input type="checkbox" onclick="addBanana()"> Banana (39¢)
+Qty: <input type="text" id="b" value="0"><br><br>
+
+<input type="submit" value="Submit">
+
+</form>
+
+<script>
+    var cost = 0;
+
+    function addApple() {
+        cost += 0.59 * parseInt(document.getElementById("a").value);
+    }
+
+    function addOrange() {
+        cost += 0.49 * parseInt(document.getElementById("o").value);
+    }
+
+    function addBanana() {
+        cost += 0.39 * parseInt(document.getElementById("b").value);
+    }
+
+    function total() {
+        var tax = cost * 0.05;
+        var totalCost = (cost + tax).toFixed(2);
+        alert("Your total cost is $" + totalCost);
+        return false;
+    }
+</script>
+
+</body>
+</html>
