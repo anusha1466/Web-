@@ -1,0 +1,96 @@
+ 
+<!DOCTYPE html> 
+<html lang="en" ng-app="profileApp"> 
+ 
+<head> 
+    <meta charset="UTF-8"> 
+    <title>User Profile - AngularJS</title> 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script> 
+ 
+    <style> 
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 40px; 
+        } 
+        .container { 
+            width: 400px; 
+            padding: 20px; 
+            border: 1px solid #ccc; 
+            border-radius: 6px; 
+        } 
+        label { 
+            display: block; 
+            margin-top: 10px; 
+        } 
+        input { 
+            width: 100%; 
+            padding: 6px; 
+            margin-top: 4px; 
+        } 
+        .btn { 
+            text-align: center; 
+            margin-top: 15px; 
+        } 
+    </style> 
+</head> 
+ 
+<body ng-controller="ProfileController"> 
+ 
+<div class="container"> 
+    <h2>User Profile</h2> 
+ 
+    <!-- Live display --> 
+    <p><strong>Name:</strong> {{user.name}}</p> 
+    <p><strong>Age:</strong> {{user.age}}</p> 
+    <p><strong>Email:</strong> {{user.email}}</p> 
+    <p><strong>City:</strong> {{user.city}}</p> 
+ 
+    <hr> 
+ 
+    <!-- Two-way data binding --> 
+    <label> 
+        Name: 
+        <input type="text" ng-model="user.name"> 
+    </label> 
+ 
+    <label> 
+        Age: 
+        <input type="number" ng-model="user.age"> 
+    </label> 
+ 
+    <label> 
+        Email: 
+        <input type="email" ng-model="user.email"> 
+    </label> 
+ 
+    <label> 
+        City: 
+        <input type="text" ng-model="user.city"> 
+    </label> 
+ 
+    <div class="btn"> 
+        <button type="button" ng-click="submit()">Submit</button> 
+    </div> 
+</div> 
+ 
+<script> 
+    var app = angular.module("profileApp", []); 
+ 
+    app.controller("ProfileController", function ($scope) { 
+ 
+        // Model bound directly to inputs 
+        $scope.user = { 
+            name: "", 
+            age: null, 
+            email: "", 
+            city: "" 
+        }; 
+ 
+        $scope.submit = function () { 
+            alert("Successfully submitted"); 
+        }; 
+    }); 
+</script> 
+ 
+</body> 
+</html>
