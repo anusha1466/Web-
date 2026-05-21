@@ -1,0 +1,36 @@
+body {
+  font-family: Arial;
+  text-align: center;
+  background: #f4f4f4;
+}
+
+.input-section {
+  margin: 20px;
+}
+
+input {
+  padding: 10px;
+  width: 200px;
+}
+
+button {
+  padding: 10px;
+  cursor: pointer;
+}
+
+li {
+  list-style: none;
+  margin: 10px;
+  padding: 10px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: gray;
+}
