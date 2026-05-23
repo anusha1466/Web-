@@ -1,0 +1,21 @@
+body {
+  text-align: center;
+  background: #222;
+  color: white;
+  font-family: Arial;
+}
+
+.drum {
+  font-size: 30px;
+  padding: 20px 30px;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  background: orange;
+  cursor: pointer;
+}
+
+.drum:active {
+  transform: scale(0.9);
+  background: red;
+}
