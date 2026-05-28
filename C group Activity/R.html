@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recursive Financial Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            width: 350px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 30px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Compound Interest Calculator</h2>
+
+    <input type="number" id="principal" placeholder="Principal Amount">
+    <input type="number" step="0.01" id="rate" placeholder="Rate (e.g. 0.05)">
+    <input type="number" id="time" placeholder="Time (Years)">
+
+    <button onclick="calculate()">Calculate</button>
+
+    <div class="result" id="output"></div>
+</div>
+
+<script>
+    // Recursive function to calculate power
+    function power(base, exponent) {
+        if (exponent === 0) {
+            return 1;   // Base case
+        } else {
+            return base * power(base, exponent - 1); // Recursive call
+        }
+    }
+
+    function calculate() {
+        let principal = parseFloat(document.getElementById("principal").value);
+        let rate = parseFloat(document.getElementById("rate").value);
+        let time = parseInt(document.getElementById("time").value);
+
+        let amount = principal * power((1 + rate), time);
+        let interest = amount - principal;
+
+        document.getElementById("output").innerHTML =
+            "Final Amount: " + amount.toFixed(2) + "<br>" +
+            "Interest Earned: " + interest.toFixed(2);
+    }
+</script>
+
+</body>
+</html>

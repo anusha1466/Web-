@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Creative Recursive Financial Calculator</title>
+
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(to right, #9a74eb, #acb6e5);
+    }
+
+    .container {
+        width: 450px;
+        background: white;
+        margin: 100px auto;
+        padding: 50px;
+        border-radius: 20px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border-radius: 8px;
+        border: 3px solid #ccc;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 20px;
+        background: #6c63ff;
+        color: rgb(255, 255, 255);
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #5548c8;
+    }
+
+    .result {
+        margin-top: 20px;
+        font-weight: bold;
+        color: #222;
+    }
+
+    .year {
+        font-size: 14px;
+        margin-top: 5px;
+        color: #555;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Recursive Financial Calculator</h2>
+
+    <input type="number" id="principal" placeholder="Principal Amount">
+    <input type="number" step="0.01" id="rate" placeholder="Rate (e.g. 0.05)">
+    <input type="number" id="time" placeholder="Time (Years)">
+
+    <button onclick="calculate()">Calculate</button>
+
+    <div class="result" id="output"></div>
+</div>
+
+<script>
+    // Recursive power function
+    function power(base, exp) {
+        if (exp === 0)
+            return 1;
+        return base * power(base, exp - 1);
+    }
+
+    // Recursive compound calculation year by year
+    function compoundAmount(principal, rate, time) {
+        if (time === 0)
+            return principal;
+        return compoundAmount(principal, rate, time - 1) * (1 + rate);
+    }
+
+    // Validate input
+    function validateInputs(p, r, t) {
+        return !(isNaN(p) || isNaN(r) || isNaN(t) || p <= 0 || r < 0 || t < 0);
+    }
+
+    // Display yearly breakdown
+    function displayYearlyBreakdown(p, r, t) {
+        let text = "";
+        for (let i = 1; i <= t; i++) {
+            let amount = p * power((1 + r), i);
+            text += `<div class="year">Year ${i}: ${amount.toFixed(2)}</div>`;
+        }
+        return text;
+    }
+
+    // Main function
+    function calculate() {
+        let p = parseFloat(document.getElementById("principal").value);
+        let r = parseFloat(document.getElementById("rate").value);
+        let t = parseInt(document.getElementById("time").value);
+
+        if (!validateInputs(p, r, t)) {
+            document.getElementById("output").innerHTML =
+                "⚠️ Please enter valid values!";
+            return;
+        }
+
+        let finalAmount = compoundAmount(p, r, t);
+        let interest = finalAmount - p;
+
+        document.getElementById("output").innerHTML =
+            `Final Amount: ${finalAmount.toFixed(2)}<br>
+             Interest Earned: ${interest.toFixed(2)}<br><br>
+             <b>Yearly Growth:</b><br>` +
+             displayYearlyBreakdown(p, r, t);
+    }
+</script>
+
+</body>
+</html>

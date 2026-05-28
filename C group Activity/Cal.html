@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recursive Financial Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Compound Interest Calculator</h2>
+
+    <label>Principal Amount</label>
+    <input type="number" id="principal">
+
+    <label>Rate of Interest (%)</label>
+    <input type="number" id="rate">
+
+    <label>Time (Years)</label>
+    <input type="number" id="time">
+
+    <button onclick="calculate()">Calculate</button>
+
+    <div class="result">
+        <p id="amount"></p>
+        <p id="interest"></p>
+    </div>
+</div>
+
+<script>
+    // Recursive function to calculate power
+    function power(base, exponent) {
+        if (exponent === 0) {
+            return 1; // base case
+        }
+        return base * power(base, exponent - 1); // recursive call
+    }
+
+    function calculate() {
+        let principal = parseFloat(document.getElementById("principal").value);
+        let rate = parseFloat(document.getElementById("rate").value);
+        let time = parseInt(document.getElementById("time").value);
+
+        let amount = principal * power((1 + rate / 100), time);
+        let interest = amount - principal;
+
+        document.getElementById("amount").innerHTML =
+            "Final Amount: ₹" + amount.toFixed(2);
+
+        document.getElementById("interest").innerHTML =
+            "Interest Earned: ₹" + interest.toFixed(2);
+    }
+</script>
+
+</body>
+</html>
