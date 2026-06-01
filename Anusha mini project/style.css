@@ -1,0 +1,59 @@
+body {
+  font-family: Arial;
+  background: #f4f4f4;
+}
+
+header {
+  background: #efe9e9;
+  color: rgb(24, 21, 21);
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+header a {
+  color: white;
+  margin-left: 15px;
+  text-decoration: none;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background:rgb(243, 240, 240);
+  padding: 15px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.card img {
+  width: 100%;
+}
+
+.center {
+  max-width: 400px;
+  background: rgb(18, 26, 188);
+  padding: 20px;
+  margin: 50px auto;
+  text-align: center;
+  border-radius: 8px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin: 10px 0;
+}
+
+button {
+  background: green;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  cursor: pointer;
+}
